@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h3>污染城市列表</h3>
+<ul id="aqi-list">
+    <!--
+        <li>第一名：福州（样例），10</li>
+          <li>第二名：福州（样例），10</li> -->
+</ul>
+
+<script type="text/javascript">
+
+    var aqiData = [
+        ["北京", 90],
+        ["上海", 50],
+        ["福州", 10],
+        ["广州", 50],
+        ["成都", 90],
+        ["西安", 100]
+    ];
+
+    window.onload =function () {
+
+        var text = document.getElementById("aqi-list");
+        /*
+         在注释下方编写代码
+         遍历读取aqiData中各个城市的数据
+         将空气质量指数大于60的城市显示到aqi-list的列表中
+         */
+        var dizhi =[];
+        var num = [];
+        //将数组中的值都取出来
+        for(var i =0;i<aqiData.length;i++) {
+
+            dizhi[i] = aqiData[i][0];
+            num[i] = aqiData[i][1];
+        }
+        //利用冒泡排序将其按照从小到大输出
+        for(i=0;i<aqiData.length;i++){
+            for(var j =0;j<aqiData.length-1-i;j++){
+                if(num[j]>num[j+1]){
+
+                    var tmp1 = num[j+1];
+                    num[j+1] = num[j];
+                    num[j] = tmp1;
+
+                    var tmp2 =dizhi[j+1];
+                    dizhi[j+1] =dizhi[j];
+                    dizhi[j] = tmp2;
+                }
+            }
+        }
+        //改变文本的值
+        for(i = 0;i<aqiData.length;i++){
+            var li = document.createElement("li");//在li变量中创建一个对象li
+            text.appendChild(li);// 在ul的最后添加一个子节点li；
+            li.innerHTML = dizhi[i]+","+num[i];//将ul下的li中的文本更改为地址+数值；
+        }
+    }
+
+</script>
+
+</body>
+</html>
